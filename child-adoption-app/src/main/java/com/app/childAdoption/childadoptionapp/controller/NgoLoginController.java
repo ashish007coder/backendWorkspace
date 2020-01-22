@@ -39,14 +39,20 @@ public class NgoLoginController {
 	public ResponseEntity<?>m1(@RequestBody Ngo ngo)
 	{
 		Ngo temp = service.auth(ngo);
+		System.out.println("temp "+temp);
+
 		if(temp!=null)
 		{
-			return new ResponseEntity<Ngo>(ngo,HttpStatus.OK);
+			return new ResponseEntity<Ngo>(temp,HttpStatus.OK);
 			
 		}
-		return new ResponseEntity<String>("Auth failed:invalid credentials",HttpStatus.OK);
+
+		return new ResponseEntity<String>("Auth failed:invalid credentials",HttpStatus.NOT_FOUND);
 		
 	}
+	
+	
+
 	
 	
 }

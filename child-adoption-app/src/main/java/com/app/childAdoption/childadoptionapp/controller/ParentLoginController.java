@@ -34,12 +34,14 @@ public class ParentLoginController {
 		
 	}
 	
+	
 	@RequestMapping(value = "/auth",method = RequestMethod.POST)
 	public ResponseEntity<?>m1(@RequestBody Parent parent)
 	{
-
-		
+		System.out.println(parent);
 		Parent temp = service.auth(parent);
+		System.out.println("temp "+temp);
+
 		if(temp!=null)
 		{
 			return new ResponseEntity<Parent>(parent,HttpStatus.OK);

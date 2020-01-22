@@ -45,7 +45,7 @@ public class Ngo {
 	@Transient
 	private String confirmPassword;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinTable(name = "REQUEST",joinColumns = @JoinColumn(name = "ngo_id",referencedColumnName = "NGO_ID"),inverseJoinColumns = @JoinColumn(name = "reg_No",referencedColumnName = "REG_NO"))
 	private List<Parent> parents = new ArrayList<>(); 
 	
@@ -182,6 +182,15 @@ public class Ngo {
 	public void setConfirmPassword(String confirmPassword) {
 		this.confirmPassword = confirmPassword;
 	}
+
+	@Override
+	public String toString() {
+		return "Ngo [ngo_id=" + ngo_id + ", ngoName=" + ngoName + ", setUpDate=" + setUpDate + ", address=" + address
+				+ ", state=" + state + ", district=" + district + ", contactPerson=" + contactPerson + ", PhoneNumber="
+				+ PhoneNumber + ", email=" + email + ", password=" + password + ", confirmPassword=" + confirmPassword
+				+ ", parents=" + parents + ", children=" + children + "]";
+	}
+	
 	
 	
 
