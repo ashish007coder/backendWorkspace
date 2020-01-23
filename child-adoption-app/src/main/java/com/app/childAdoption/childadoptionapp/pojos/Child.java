@@ -9,41 +9,40 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-@Table(name = "CHILD")
+@Table(name = "children")
 public class Child {
 
 	@Id
-	@Column(name = "CHILD_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int child_id;
 	
-	@Column(name = "CHILD_NAME")
 	private String child_name;
-	
-	@Column(name = "AGE")
+
 	private int age;
 	
-	@Column(name = "GENDER")
 	private String gender;
 	
-	@Column(name = "COLOR")
 	private String color;
 	
 	private String url;
 	
-	@Column(name = "HEALTH_STATUS")
+	@Column(name = "health_status")
 	private String health;
 	
-	@Column(name = "BLOOD_GROUP")
+	@Column(name = "blood_group")
 	private String bloodGroup;
 	
+	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "reg_No",referencedColumnName = "REG_NO")
+	@JoinColumn(name = "reg_No",referencedColumnName = "reg_No")
 	private Parent parent;
 	
+	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "ngo_id",referencedColumnName = "NGO_ID")
+	@JoinColumn(name = "ngo_id",referencedColumnName = "ngo_id")
 	private Ngo ngo;
 	
 	
@@ -109,6 +108,31 @@ public class Child {
 	}
 	public void setBloodGroup(String bloodGroup) {
 		this.bloodGroup = bloodGroup;
+	}
+	
+	public int getChild_id() {
+		return child_id;
+	}
+	public void setChild_id(int child_id) {
+		this.child_id = child_id;
+	}
+	public String getChild_name() {
+		return child_name;
+	}
+	public void setChild_name(String child_name) {
+		this.child_name = child_name;
+	}
+	public Parent getParent() {
+		return parent;
+	}
+	public void setParent(Parent parent) {
+		this.parent = parent;
+	}
+	public Ngo getNgo() {
+		return ngo;
+	}
+	public void setNgo(Ngo ngo) {
+		this.ngo = ngo;
 	}
 	@Override
 	public String toString() {

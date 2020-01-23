@@ -1,5 +1,7 @@
 package com.app.childAdoption.childadoptionapp.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.childAdoption.childadoptionapp.pojos.Child;
 import com.app.childAdoption.childadoptionapp.pojos.Ngo;
 import com.app.childAdoption.childadoptionapp.service.NgoLoginService;
 
@@ -52,6 +55,16 @@ public class NgoLoginController {
 	}
 	
 	
+	@RequestMapping(value = "/ngodetails",method = RequestMethod.POST)
+	public Ngo listStrin(@RequestBody Ngo ngo)
+	{
+		return service.ngoDeatils(ngo);		
+	}
+	@RequestMapping(value = "/childlist",method = RequestMethod.POST)
+	public List<Child> list(@RequestBody Ngo ngo)
+	{
+		return service.listChildren(ngo);
+	}
 
 	
 	

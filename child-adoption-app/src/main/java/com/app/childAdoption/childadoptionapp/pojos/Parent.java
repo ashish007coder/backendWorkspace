@@ -5,91 +5,85 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 @Entity
-@Table(name = "PARENTS")
+@Table(name = "parents")
 public class Parent {
 	
-	@Column(name = "REG_NO")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int reg_No;
 	
-	@Column(name = "GENDER")
 	private String gender;
 	
-	@Column(name = "MALE_PARENT")
+	@Column(name = "male_parent_name")
 	private String maleParName;
 	
-	@Column(name = "FEMALE_PARENT")
+	@Column(name = "female_parent_name")
 	private String femaleParName;
 	
-	@Column(name = "MALE_PARENT_AGE")
+	@Column(name = "male_parent_age")
 	private int maleParAge;
 	
-	@Column(name = "FEMALE_PARENT_AGE")
+	@Column(name = "female_parent_age")
 	private int femaleParAge;
 	
-	@Column(name = "COMPOSITION_AGE")
+	@Column(name = "composite_age")
 	private int compositeAge;
 	
-	@Column(name = "MALE_PARENT_OCCUPATION")
+	@Column(name = "male_parent_occupation")
 	private String mOccupation;
 	
-	@Column(name = "FEMALE_PARENT_OCCUPATION")
+	@Column(name = "female_parent_occupation")
 	private String fOccupation;
 	
-	@Column(name = "MALE_PARENT_INCOME")
+	@Column(name = "male_parent_income")
 	private double mIncome;
 	
-	@Column(name = "FEMALE_PARENT_INCOME")
+	@Column(name = "female_parent_income")
 	private double fIncome;
 	
-	@Column(name = "NUMBER_OF_CHILDREN")
+	@Column(name = "number_of_children")
 	private int numOfChildren;
 	
-	@Column(name = "ADDRESS" )
 	private String address;
 	
-	@Column(name = "CITY" )
 	private String city;
 	
-	@Column(name = "DISTRICT" )
 	private String district;
 	
-	@Column(name = "STATE" )
 	private String state;
 	
-	@Column(name = "PINCODE" )
 	private int pinCode;
 	
-	@Column(name = "ADHAR_CARD_NO" )
+	@Column(name = "aadhar_card_no" )
 	private int adharNumber;
 	
-	@Column(name = "MOBILE_NO" )
+	@Column(name = "mobile_no" )
 	private int mobileNumber;
 	
-	@Column(name = "MARITAL_STATUS" )
+	@Column(name = "marital_status" )
 	private String maritalStatus;
 	
-	@Column(name = "REG_DATE" )
 	private Date reg_date;
 	
-	@Column(name = "NO_OF_CHILDREN_PARENT_HAVE" )
+	@Column(name = "num_of_children_parent_have" )
 	private int numOfchildrenParentHave;
-	
-	@Column(name = "PASSWORD" )
+
 	private String password;
 	
-	@Column(name = "EMAIL" )
 	private String email;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "parent",cascade = CascadeType.ALL,targetEntity = Child.class)
-	private List<Child> children = new ArrayList<>();
+	private List<Child> listOfchildren = new ArrayList<>();
 	
-	@ManyToMany(mappedBy = "parents",targetEntity = Ngo.class)
-	private List<Ngo> ngos;
+	@JsonIgnore
+	@ManyToMany(mappedBy = "listOfParents",targetEntity = Ngo.class,cascade = CascadeType.ALL)
+	private List<Ngo> listOfNgos;
 	
 	public Parent(int regNo, String gender, String maleParName, String femaleParName, int maleParAge, int femaleParAge,
 			int compositeAge, String fOccupation, String mOccupation, double mIncome, double fIncome, int numOfChildren,
@@ -270,6 +264,26 @@ public class Parent {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public int getReg_No() {
+		return reg_No;
+	}
+	public void setReg_No(int reg_No) {
+		this.reg_No = reg_No;
+	}
+	
+	public List<Child> getListOfchildren() {
+		return listOfchildren;
+	}
+	public void setListOfchildren(List<Child> listOfchildren) {
+		this.listOfchildren = listOfchildren;
+	}
+	public List<Ngo> getListOfNgos() {
+		return listOfNgos;
+	}
+	public void setListOfNgos(List<Ngo> listOfNgos) {
+		this.listOfNgos = listOfNgos;
 	}
 	@Override
 	public String toString() {

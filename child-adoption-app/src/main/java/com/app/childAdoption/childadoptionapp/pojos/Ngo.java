@@ -6,52 +6,50 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-@Table(name = "NGOS")
+@Table(name = "ngos")
 public class Ngo {
 
 	@Id
-	@Column(name = "NGO_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ngo_id;
 	
-	@Column(name = "NGO_NAME")
+	@Column(name = "ngo_name")
 	private String ngoName;
 	
-	@Column(name = "SET_UP_DATE")
+	@Column(name = "set_up_date")
 	private Date setUpDate;
 	
-	@Column(name = "ADDRESS")
 	private String address;
 	
-	@Column(name = "STATE")
 	private String state;
-	
-	@Column(name = "DISTRICT")
+
 	private String district;
 	
-	@Column(name = "CONTACT_PERSON")
+	@Column(name = "Contact_Person")
 	private String contactPerson;
 	
-	@Column(name = "PHONE_NUMBER")
+	@Column(name = "Phone_Number")
 	private String PhoneNumber;
 	
-	@Column(name = "EMAIL")
 	private String email;
 	
-	@Column(name = "PASSWORD")
 	private String password;
 	
 	@Transient
 	private String confirmPassword;
 	
-	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-	@JoinTable(name = "REQUEST",joinColumns = @JoinColumn(name = "ngo_id",referencedColumnName = "NGO_ID"),inverseJoinColumns = @JoinColumn(name = "reg_No",referencedColumnName = "REG_NO"))
-	private List<Parent> parents = new ArrayList<>(); 
+	@JsonIgnore
+	//,fetch = FetchType.EAGER	
+	@ManyToMany(cascade = CascadeType.MERGE)
+	@JoinTable(name = "REQUEST",joinColumns = @JoinColumn(name = "ngo_id",referencedColumnName = "ngo_id"),inverseJoinColumns = @JoinColumn(name = "reg_No",referencedColumnName = "reg_No"))
+	private List<Parent> listOfParents = new ArrayList<>(); 
 	
-	
-	@OneToMany(mappedBy = "ngo",targetEntity = Child.class)
-	private List<Child> children = new ArrayList<>();
+	@JsonIgnore
+	@OneToMany(mappedBy = "ngo",targetEntity = Child.class,cascade = CascadeType.ALL)
+	private List<Child> listOfchildren = new ArrayList<>();
 	
 	public Ngo() {
 		
@@ -182,16 +180,45 @@ public class Ngo {
 	public void setConfirmPassword(String confirmPassword) {
 		this.confirmPassword = confirmPassword;
 	}
+	
+	public int getNgo_id() {
+		return ngo_id;
+	}
+
+	public void setNgo_id(int ngo_id) {
+		this.ngo_id = ngo_id;
+	}
+	
+
+	public List<Parent> getListOfParents() {
+		return listOfParents;
+	}
+
+	public void setListOfParents(List<Parent> listOfParents) {
+		this.listOfParents = listOfParents;
+	}
+
+	public List<Child> getListOfchildren() {
+		return listOfchildren;
+	}
+
+	public void setListOfchildren(List<Child> listOfchildren) {
+		this.listOfchildren = listOfchildren;
+	}
 
 	@Override
 	public String toString() {
 		return "Ngo [ngo_id=" + ngo_id + ", ngoName=" + ngoName + ", setUpDate=" + setUpDate + ", address=" + address
 				+ ", state=" + state + ", district=" + district + ", contactPerson=" + contactPerson + ", PhoneNumber="
 				+ PhoneNumber + ", email=" + email + ", password=" + password + ", confirmPassword=" + confirmPassword
-				+ ", parents=" + parents + ", children=" + children + "]";
+				+ ", parents=" + listOfParents + ", children=" + listOfchildren + "]";
 	}
-	
-	
-	
-
+	public void addChild(Child c) {
+		listOfchildren.add(c);
+		c.setNgo(this);
+	}
+	public void removeChild(Child c) {
+		listOfchildren.remove(c);
+		c.setNgo(this);
+	}
 }
