@@ -78,7 +78,7 @@ public class Parent {
 	private String email;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "parent",cascade = CascadeType.ALL,targetEntity = Child.class)
+	@OneToMany(mappedBy = "parent",cascade = CascadeType.ALL,targetEntity = Child.class,orphanRemoval = true)
 	private List<Child> listOfchildren = new ArrayList<>();
 	
 	@JsonIgnore

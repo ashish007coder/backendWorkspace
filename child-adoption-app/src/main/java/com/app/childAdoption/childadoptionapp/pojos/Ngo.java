@@ -43,12 +43,12 @@ public class Ngo {
 	
 	@JsonIgnore
 	//,fetch = FetchType.EAGER	
-	@ManyToMany(cascade = CascadeType.MERGE)
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "REQUEST",joinColumns = @JoinColumn(name = "ngo_id",referencedColumnName = "ngo_id"),inverseJoinColumns = @JoinColumn(name = "reg_No",referencedColumnName = "reg_No"))
 	private List<Parent> listOfParents = new ArrayList<>(); 
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "ngo",targetEntity = Child.class,cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "ngo",targetEntity = Child.class,cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
 	private List<Child> listOfchildren = new ArrayList<>();
 	
 	public Ngo() {
@@ -219,6 +219,6 @@ public class Ngo {
 	}
 	public void removeChild(Child c) {
 		listOfchildren.remove(c);
-		c.setNgo(this);
+		c.setNgo(null);
 	}
 }
