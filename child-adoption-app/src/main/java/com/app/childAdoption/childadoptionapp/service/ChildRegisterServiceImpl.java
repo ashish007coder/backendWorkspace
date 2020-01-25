@@ -1,8 +1,7 @@
 package com.app.childAdoption.childadoptionapp.service;
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,7 @@ import com.app.childAdoption.childadoptionapp.pojos.Ngo;
 
 
 @Service
+@Transactional
 public class ChildRegisterServiceImpl implements ChildRegisterService {
 	@Autowired
 	ChildDao dao; 
@@ -34,18 +34,14 @@ public class ChildRegisterServiceImpl implements ChildRegisterService {
 	@Override
 	public boolean register(Child c,Ngo ngo) {
 		
-//		   String jpql = "select u from Parent u where u.email=:email and u.password=:pass";
-//			  return mgr.unwrap(Session.class).createQuery(jpql,Ngo.class).setParameter("email", ngo.getEmail()).setParameter("pass", ngo.getPassword()).getSingleResult();
-		
 		String jpql = "select n from Ngo n where n.ngoName=:nm";
-		System.out.println(ngo.getNgoName());
 		Ngo n = mgr.unwrap(Session.class).createQuery(jpql, Ngo.class).setParameter("nm", "abc").getSingleResult();
+		System.out.println(c);
+		mgr.persist(c);
 		n.addChild(c);
-		if(dao.save(c) != null)
-		{
-			return true;
-		}
-		return false;
+		System.out.println(n);
+		mgr.merge(c);
+		return true;
 	}
 	
 

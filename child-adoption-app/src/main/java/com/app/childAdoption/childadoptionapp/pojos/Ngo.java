@@ -41,14 +41,17 @@ public class Ngo {
 	@Transient
 	private String confirmPassword;
 	
-	@JsonIgnore
-	//,fetch = FetchType.EAGER	
-	@ManyToMany(cascade = CascadeType.MERGE)
+	/*@JsonIgnore
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "REQUEST",joinColumns = @JoinColumn(name = "ngo_id",referencedColumnName = "ngo_id"),inverseJoinColumns = @JoinColumn(name = "reg_No",referencedColumnName = "reg_No"))
-	private List<Parent> listOfParents = new ArrayList<>(); 
+	private List<Parent> listOfParents = new ArrayList<>(); */
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "ngo",targetEntity = Child.class,cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "ngo")
+	private List<Request> requests = new ArrayList<>();
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "ngo",targetEntity = Child.class,cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
 	private List<Child> listOfchildren = new ArrayList<>();
 	
 	public Ngo() {
@@ -190,35 +193,47 @@ public class Ngo {
 	}
 	
 
-	public List<Parent> getListOfParents() {
+	/*public List<Parent> getListOfParents() {
 		return listOfParents;
 	}
 
 	public void setListOfParents(List<Parent> listOfParents) {
 		this.listOfParents = listOfParents;
+	}*/
+	
+	public List<Request> getRequests() {
+		return requests;
 	}
 
+	public void setRequests(List<Request> requests) {
+		this.requests = requests;
+	}
+
+	
 	public List<Child> getListOfchildren() {
 		return listOfchildren;
 	}
 
+	
 	public void setListOfchildren(List<Child> listOfchildren) {
 		this.listOfchildren = listOfchildren;
 	}
 
+	
 	@Override
 	public String toString() {
 		return "Ngo [ngo_id=" + ngo_id + ", ngoName=" + ngoName + ", setUpDate=" + setUpDate + ", address=" + address
 				+ ", state=" + state + ", district=" + district + ", contactPerson=" + contactPerson + ", PhoneNumber="
 				+ PhoneNumber + ", email=" + email + ", password=" + password + ", confirmPassword=" + confirmPassword
-				+ ", parents=" + listOfParents + ", children=" + listOfchildren + "]";
+				+ ", requests=" + requests + ", listOfchildren=" + listOfchildren + "]";
 	}
+
 	public void addChild(Child c) {
 		listOfchildren.add(c);
 		c.setNgo(this);
 	}
 	public void removeChild(Child c) {
 		listOfchildren.remove(c);
-		c.setNgo(this);
+		c.setNgo(null);
 	}
 }

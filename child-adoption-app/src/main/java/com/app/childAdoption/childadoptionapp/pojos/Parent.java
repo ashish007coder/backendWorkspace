@@ -78,12 +78,16 @@ public class Parent {
 	private String email;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "parent",cascade = CascadeType.ALL,targetEntity = Child.class)
+	@OneToMany(mappedBy = "parent",cascade = CascadeType.ALL,targetEntity = Child.class,orphanRemoval = true)
 	private List<Child> listOfchildren = new ArrayList<>();
 	
-	@JsonIgnore
+	/*@JsonIgnore
 	@ManyToMany(mappedBy = "listOfParents",targetEntity = Ngo.class,cascade = CascadeType.ALL)
-	private List<Ngo> listOfNgos;
+	private List<Ngo> listOfNgos;*/
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "parent")
+	private List<Request> requests = new ArrayList<>();
 	
 	public Parent(int regNo, String gender, String maleParName, String femaleParName, int maleParAge, int femaleParAge,
 			int compositeAge, String fOccupation, String mOccupation, double mIncome, double fIncome, int numOfChildren,
@@ -279,28 +283,28 @@ public class Parent {
 	public void setListOfchildren(List<Child> listOfchildren) {
 		this.listOfchildren = listOfchildren;
 	}
-	public List<Ngo> getListOfNgos() {
+	/*public List<Ngo> getListOfNgos() {
 		return listOfNgos;
 	}
 	public void setListOfNgos(List<Ngo> listOfNgos) {
 		this.listOfNgos = listOfNgos;
+	}*/
+	public List<Request> getRequests() {
+		return requests;
+	}
+	public void setRequests(List<Request> requests) {
+		this.requests = requests;
 	}
 	@Override
 	public String toString() {
-		return "Parent [regNo=" + reg_No + ", gender=" + gender + ", maleParName=" + maleParName + ", femaleParName="
+		return "Parent [reg_No=" + reg_No + ", gender=" + gender + ", maleParName=" + maleParName + ", femaleParName="
 				+ femaleParName + ", maleParAge=" + maleParAge + ", femaleParAge=" + femaleParAge + ", compositeAge="
-				+ compositeAge + ", fOccupation=" + fOccupation + ", mOccupation=" + mOccupation + ", mIncome="
+				+ compositeAge + ", mOccupation=" + mOccupation + ", fOccupation=" + fOccupation + ", mIncome="
 				+ mIncome + ", fIncome=" + fIncome + ", numOfChildren=" + numOfChildren + ", address=" + address
 				+ ", city=" + city + ", district=" + district + ", state=" + state + ", pinCode=" + pinCode
 				+ ", adharNumber=" + adharNumber + ", mobileNumber=" + mobileNumber + ", maritalStatus=" + maritalStatus
 				+ ", reg_date=" + reg_date + ", numOfchildrenParentHave=" + numOfchildrenParentHave + ", password="
-				+ password + ", email=" + email + "]";
+				+ password + ", email=" + email + ", listOfchildren=" + listOfchildren + ", requests=" + requests + "]";
 	}
-	
-	
-	
-	
-	
-	
 	
 }
