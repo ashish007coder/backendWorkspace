@@ -28,7 +28,7 @@ public class Child {
 	
 	private String color;
 	
-	private String url;
+	private byte[] imageUrl;
 	
 	@Column(name = "health_status")
 	private String health;
@@ -50,7 +50,7 @@ public class Child {
 	public Child() {
 		
 	}
-	public Child(int id, String name, int age, String gender, String color, String url, String health,
+	public Child(int id, String name, int age, String gender, String color, byte[] imageUrl, String health,
 			String bloodGroup) {
 		super();
 		this.child_id = id;
@@ -58,7 +58,7 @@ public class Child {
 		this.age = age;
 		this.gender = gender;
 		this.color = color;
-		this.url = url;
+		this.imageUrl = imageUrl;
 		this.health = health;
 		this.bloodGroup = bloodGroup;
 	}
@@ -92,11 +92,11 @@ public class Child {
 	public void setColor(String color) {
 		this.color = color;
 	}
-	public String getUrl() {
-		return url;
+	public byte[] getimageUrl() {
+		return imageUrl;
 	}
-	public void setUrl(String url) {
-		this.url = url;
+	public void setimageUrl(byte[] imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 	public String getHealth() {
 		return health;
@@ -138,7 +138,7 @@ public class Child {
 	@Override
 	public String toString() {
 		return "Child [id=" + child_id + ", name=" + child_name + ", age=" + age + ", gender=" + gender + ", color=" + color
-				+ ", url=" + url + ", health=" + health + ", bloodGroup=" + bloodGroup + "]";
+				+ ", imageUrl=" + imageUrl + ", health=" + health + ", bloodGroup=" + bloodGroup + "]";
 	}
 	
 	
