@@ -34,7 +34,6 @@ public class ParentLoginController {
 		
 	}
 	
-	
 	@RequestMapping(value = "/auth",method = RequestMethod.POST)
 	public ResponseEntity<?>m1(@RequestBody Parent parent)
 	{

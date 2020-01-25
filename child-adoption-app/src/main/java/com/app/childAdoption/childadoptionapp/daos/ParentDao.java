@@ -14,7 +14,7 @@ import com.app.childAdoption.childadoptionapp.pojos.Parent;
 
 
 @Repository
-public interface ParentDao  extends JpaRepository<Parent,String>
+public interface ParentDao  extends JpaRepository<Parent,Integer>
 {
 
 
