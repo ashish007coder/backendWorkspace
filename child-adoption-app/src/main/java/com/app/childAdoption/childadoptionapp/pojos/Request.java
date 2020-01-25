@@ -16,6 +16,20 @@ public class Request {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int req_id;
 	
+	private String genderOfChild;
+	
+	private String healthStatusOfChild;
+	
+	private String categoryOfChild;
+	
+	private int ageOfChild;
+	
+	private String firstStateOfAdoption;
+	
+	private String secondStateOfAdoption;
+	
+	private String thirdStateOfAdoption;
+	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "ngo_id")
 	private Ngo ngo;
@@ -81,5 +95,75 @@ public class Request {
 	public void setRequested_date(LocalDate requested_date) {
 		this.requested_date = requested_date;
 	}
+
+	public String getGenderOfChild() {
+		return genderOfChild;
+	}
+
+	public void setGenderOfChild(String genderOfChild) {
+		this.genderOfChild = genderOfChild;
+	}
+
+	public String getHealthStatusOfChild() {
+		return healthStatusOfChild;
+	}
+
+	public void setHealthStatusOfChild(String healthStatusOfChild) {
+		this.healthStatusOfChild = healthStatusOfChild;
+	}
+
+	public int getAgeOfChild() {
+		return ageOfChild;
+	}
+
+	public void setAgeOfChild(int ageOfChild) {
+		this.ageOfChild = ageOfChild;
+	}
+
+	public String getFirstStateOfAdoption() {
+		return firstStateOfAdoption;
+	}
+
+	public void setFirstStateOfAdoption(String firstStateOfAdoption) {
+		this.firstStateOfAdoption = firstStateOfAdoption;
+	}
+
+	public String getSecondStateOfAdoption() {
+		return secondStateOfAdoption;
+	}
+
+	public void setSecondStateOfAdoption(String secondStateOfAdoption) {
+		this.secondStateOfAdoption = secondStateOfAdoption;
+	}
+
+	public String getThirdStateOfAdoption() {
+		return thirdStateOfAdoption;
+	}
+
+	public void setThirdStateOfAdoption(String thirdStateOfAdoption) {
+		this.thirdStateOfAdoption = thirdStateOfAdoption;
+	}
+
+	public String getCategoryOfChild() {
+		return categoryOfChild;
+	}
+
+	public void setCategoryOfChild(String categoryOfChild) {
+		this.categoryOfChild = categoryOfChild;
+	}
+
+	@Override
+	public String toString() {
+		return "Request [req_id=" + req_id + ", genderOfChild=" + genderOfChild + ", healthStatusOfChild="
+				+ healthStatusOfChild + ", categoryOfChild=" + categoryOfChild + ", ageOfChild=" + ageOfChild
+				+ ", firstStateOfAdoption=" + firstStateOfAdoption + ", secondStateOfAdoption=" + secondStateOfAdoption
+				+ ", thirdStateOfAdoption=" + thirdStateOfAdoption + ", ngo=" + ngo + ", parent=" + parent + ", moto="
+				+ moto + ", requested_date=" + requested_date + "]";
+	}
+	
+	
+	
+	
+	
 	
 }

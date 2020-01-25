@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.app.childAdoption.childadoptionapp.daos.ParentDao;
 import com.app.childAdoption.childadoptionapp.pojos.Child;
 import com.app.childAdoption.childadoptionapp.pojos.Parent;
+import com.app.childAdoption.childadoptionapp.pojos.Request;
 
 
 @Service
@@ -73,6 +74,12 @@ public class ParentServiceImpl implements ParentServices{
 		}
 		
 		return null;
+	}
+
+	@Override
+	public boolean regForCirtainChild(Request requestparams) {
+		// TODO Auto-generated method stu
+		return false;
 	}
 	
 

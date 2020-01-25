@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.app.childAdoption.childadoptionapp.pojos.Child;
 import com.app.childAdoption.childadoptionapp.pojos.Parent;
+import com.app.childAdoption.childadoptionapp.pojos.Request;
 
 
 
@@ -17,5 +18,7 @@ public interface ParentServices {
 	public boolean register(Parent parent);
 	
 	public List<Child> getChildListOnRequest(Child child); 
+	public boolean regForCirtainChild(Request requestparams);
+	
 
 }
