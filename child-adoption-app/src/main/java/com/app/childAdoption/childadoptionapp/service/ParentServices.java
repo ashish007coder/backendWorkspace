@@ -18,7 +18,6 @@ public interface ParentServices {
 	public boolean register(Parent parent);
 	
 	public List<Child> getChildListOnRequest(Child child); 
-	public boolean regForCirtainChild(Request requestparams);
 	
 
 }

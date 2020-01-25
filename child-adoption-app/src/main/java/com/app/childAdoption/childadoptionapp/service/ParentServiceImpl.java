@@ -76,11 +76,7 @@ public class ParentServiceImpl implements ParentServices{
 		return null;
 	}
 
-	@Override
-	public boolean regForCirtainChild(Request requestparams) {
-		// TODO Auto-generated method stu
-		return false;
-	}
+
 	
 
 }
