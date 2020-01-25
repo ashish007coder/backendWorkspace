@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.app.childAdoption.childadoptionapp.pojos.Child;
 import com.app.childAdoption.childadoptionapp.pojos.Ngo;
 
-public interface NgoLoginService {
+public interface NgoService {
 	
 	public Ngo auth(Ngo ngo);
 	

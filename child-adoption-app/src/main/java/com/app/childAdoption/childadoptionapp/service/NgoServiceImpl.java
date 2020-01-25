@@ -18,7 +18,7 @@ import com.app.childAdoption.childadoptionapp.pojos.Ngo;
 
 @Service
 @Transactional
-public class NgoLoginServiceImpl implements NgoLoginService{
+public class NgoServiceImpl implements NgoService{
 
 	@Autowired
 	NgoDao dao;

@@ -1,5 +1,7 @@
 package com.app.childAdoption.childadoptionapp.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,16 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.childAdoption.childadoptionapp.pojos.Child;
 import com.app.childAdoption.childadoptionapp.pojos.Parent;
 
-import com.app.childAdoption.childadoptionapp.service.ParentLoginServices;
+import com.app.childAdoption.childadoptionapp.service.ParentServices;
 
 @RestController
 @CrossOrigin(allowedHeaders = "*",origins = "*")
-public class ParentLoginController {
+public class ParentController {
 
 	@Autowired
-	ParentLoginServices service;
+	ParentServices service;
 	
 	@RequestMapping(value = "/reg",method = RequestMethod.POST)
 	public ResponseEntity<?>m2(@RequestBody Parent parent)
@@ -48,6 +51,26 @@ public class ParentLoginController {
 			
 		}
 		return new ResponseEntity<String>("Auth failed:invalid credits",HttpStatus.OK);
+		
+	}
+	
+	
+	
+	@RequestMapping(value = "/reqchildonCondition",method = RequestMethod.POST)
+	public ResponseEntity<?>m1(@RequestBody Child child)
+	{
+		
+		
+		System.out.println(child);
+		List<Child> tempList = service.getChildListOnRequest(child);
+		System.out.println("temp "+tempList);
+
+		if(tempList!=null)
+		{
+			return new ResponseEntity<List<Child>>(tempList,HttpStatus.OK);
+			
+		}
+		return new ResponseEntity<String>("Data Fetch failed",HttpStatus.NOT_FOUND);
 		
 	}
 	

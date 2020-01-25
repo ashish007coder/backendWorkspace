@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.childAdoption.childadoptionapp.pojos.Child;
 import com.app.childAdoption.childadoptionapp.pojos.Ngo;
-import com.app.childAdoption.childadoptionapp.service.NgoLoginService;
+import com.app.childAdoption.childadoptionapp.service.NgoService;
 
 
 @RestController
@@ -22,7 +22,7 @@ import com.app.childAdoption.childadoptionapp.service.NgoLoginService;
 public class NgoLoginController {
 
 	@Autowired
-	NgoLoginService service;
+	NgoService service;
 	
 	@RequestMapping(value = "/ngoreg",method = RequestMethod.POST)
 	public ResponseEntity<?>m2(@RequestBody Ngo ngo)
