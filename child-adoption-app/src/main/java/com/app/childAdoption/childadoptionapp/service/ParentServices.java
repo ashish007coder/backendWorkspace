@@ -19,5 +19,6 @@ public interface ParentServices {
 	
 	public List<Child> getChildListOnRequest(Child child); 
 	
-
+	public Parent getparentDetails(Parent parent);
+	
 }

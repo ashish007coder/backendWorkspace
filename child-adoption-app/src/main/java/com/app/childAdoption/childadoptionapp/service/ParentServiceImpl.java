@@ -76,6 +76,16 @@ public class ParentServiceImpl implements ParentServices{
 		return null;
 	}
 
+	@Override
+	public Parent getparentDetails(Parent parent) {
+		// TODO Auto-generated method stub
+		String jpql = "Select u from Parent u where u.email=:pEmail";
+
+		System.out.println(parent.getEmail());
+		return mgr.unwrap(Session.class).createQuery(jpql,Parent.class).setParameter("pEmail",parent.getEmail()).getSingleResult();
+
+	}
+
 
 	
 
