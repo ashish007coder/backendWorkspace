@@ -38,7 +38,8 @@ public class ParentController {
 	public ResponseEntity<?>m2(@RequestBody Parent parent)
 	{
 
-		
+		System.out.println(parent);
+
 		if(service.register(parent))
 		{
 			return new ResponseEntity<Parent>(parent,HttpStatus.OK);

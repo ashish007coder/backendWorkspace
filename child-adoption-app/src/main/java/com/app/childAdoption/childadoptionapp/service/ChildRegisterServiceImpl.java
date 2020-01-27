@@ -32,10 +32,11 @@ public class ChildRegisterServiceImpl implements ChildRegisterService {
 	}*/
 
 	@Override
-	public boolean register(Child c,Ngo ngo) {
+	public boolean register(Child c,int id) {
 		
-		String jpql = "select n from Ngo n where n.ngoName=:nm";
-		Ngo n = mgr.unwrap(Session.class).createQuery(jpql, Ngo.class).setParameter("nm", "abc").getSingleResult();
+		System.out.println(id);
+		String jpql = "select n from Ngo n where n.ngo_id=:nm";
+		Ngo n = mgr.unwrap(Session.class).createQuery(jpql, Ngo.class).setParameter("nm",id).getSingleResult();
 		System.out.println(c);
 		mgr.persist(c);
 		n.addChild(c);

@@ -41,7 +41,7 @@ public class NgoServiceImpl implements NgoService{
 	
 	 @Override 
 	 public Ngo auth(Ngo ngo) {
-	   String jpql = "select u from Parent u where u.email=:email and u.password=:pass";
+	   String jpql = "select u from Ngo u where u.email=:email and u.password=:pass";
 	  return mgr.unwrap(Session.class).createQuery(jpql,Ngo.class).setParameter("email", ngo.getEmail()).setParameter("pass", ngo.getPassword()).getSingleResult();
 	  
 	 }

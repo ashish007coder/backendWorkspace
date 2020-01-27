@@ -7,7 +7,7 @@ import com.app.childAdoption.childadoptionapp.pojos.Ngo;
 
 public interface ChildRegisterService {
 	
-	public boolean register(Child child,Ngo ngo);
+	public boolean register(Child child,int id);
 	
 	
 }
