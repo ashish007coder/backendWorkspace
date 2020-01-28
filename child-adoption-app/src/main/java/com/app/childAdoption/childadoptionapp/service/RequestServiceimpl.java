@@ -35,17 +35,19 @@ public class RequestServiceimpl implements IRequestService {
 	
 	public List<Request> listOfRequests(Parent parent){
 		
-		String jpql = "select u from Request u where u.parent = :parent ";
-		
-		return mgr.unwrap(Session.class).createQuery(jpql, Request.class).setParameter("parent", parent.getReg_No()).getResultList();
+		System.out.println(parent.getReg_No());
+//		String jpql = "select u from Request u ,Ngo n where n.ngo_id= :ngo";
+		String jpql ="SELECT r FROM Request r JOIN r.parent u WHERE u.reg_No=:parent";
+		return mgr.unwrap(Session.class).createQuery(jpql, Request.class).setParameter("parent",parent.getReg_No()).getResultList();
 		
 	}
 	
 	public List<Request> listOfRequests(Ngo ngo){
 		
-		String jpql = "select u from ngo u where u.ngo = :ngo";
-		
-		return mgr.unwrap(Session.class).createQuery(jpql, Request.class).setParameter("ngo", ngo.getNgo_id()).getResultList();
+		System.out.println(ngo.getNgo_id());
+//		String jpql = "select u from Request u ,Ngo n where n.ngo_id= :ngo";
+		String jpql ="SELECT r FROM Request r JOIN r.ngo u WHERE u.ngo_id=:ngo";
+		return mgr.unwrap(Session.class).createQuery(jpql, Request.class).setParameter("ngo",ngo.getNgo_id()).getResultList();
 	}
 
 	@Override

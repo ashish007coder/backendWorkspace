@@ -26,34 +26,7 @@ public class ChildRegisterController {
 	
 	@Autowired
 	ChildRegisterService service;
-	
-//	@RequestMapping(value = "/childreg",method = RequestMethod.POST)
-//	public ResponseEntity<?>m2(@Valid @RequestBody Child child,@RequestParam(value = "image", required = false) MultipartFile image)
-//	{
-//		
-//		System.out.println(ngo);
-//		
-//		if(image!=null)
-//		{
-//			try {
-//				child.setimageUrl(image.getBytes());
-//				
-//				System.out.println("image added successfully!");
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
-//		
-//		if(service.register(child,ngo))
-//		{
-//			return new ResponseEntity<Child>(child,HttpStatus.OK);
-//			
-//		}
-//		return new ResponseEntity<String>("Register failed:invalid credentials",HttpStatus.OK);	
-//	}
-	
-	
+		
 	@RequestMapping(value = "/childreg",method = RequestMethod.POST)
 	public ResponseEntity<?>m2(@Valid @RequestBody Child child,@RequestParam Integer id)
 	{
