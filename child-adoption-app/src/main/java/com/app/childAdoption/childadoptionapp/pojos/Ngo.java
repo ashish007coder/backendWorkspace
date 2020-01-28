@@ -228,12 +228,14 @@ public class Ngo {
 	}
 
 	
+	
+
 	@Override
 	public String toString() {
 		return "Ngo [ngo_id=" + ngo_id + ", ngoName=" + ngoName + ", setUpDate=" + setUpDate + ", address=" + address
 				+ ", state=" + state + ", district=" + district + ", contactPerson=" + contactPerson + ", PhoneNumber="
 				+ PhoneNumber + ", email=" + email + ", password=" + password + ", confirmPassword=" + confirmPassword
-				+ ", requests=" + requests + ", listOfchildren=" + listOfchildren + "]";
+				+ "]";
 	}
 
 	public void addChild(Child c) {
