@@ -41,6 +41,7 @@ public class NgoServiceImpl implements NgoService{
 	
 	 @Override 
 	 public Ngo auth(Ngo ngo) {
+		 
 	   String jpql = "select u from Ngo u where u.email=:email and u.password=:pass";
 	  return mgr.unwrap(Session.class).createQuery(jpql,Ngo.class).setParameter("email", ngo.getEmail()).setParameter("pass", ngo.getPassword()).getSingleResult();
 	  
@@ -63,5 +64,30 @@ public class NgoServiceImpl implements NgoService{
 			l1=n.getListOfchildren();
 			return l1;
 		}
-	 
+
+
+
+		@Override
+		public Ngo update(Ngo ngo) {
+			mgr.unwrap(Session.class).update(ngo);
+			return ngo;
+		}
+
+
+
+		@Override
+		public boolean deleteNgo(int ngo_id) {
+//			if(dao.existsById(ngo_id))
+//			mgr.unwrap(Session.class).delete(ngo_id);
+			
+			Ngo tempNgo = new Ngo();
+			tempNgo.setNgo_id(ngo_id);
+			Example<Ngo> exampleNgo = Example.of(tempNgo);
+			Optional<Ngo> optional = dao.findOne(exampleNgo);
+//			if(optional.isPresent()) {
+//				return optional.get();
+//			}
+			return true;
+		}
+		
 }

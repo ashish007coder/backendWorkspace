@@ -9,13 +9,10 @@ import com.app.childAdoption.childadoptionapp.pojos.Ngo;
 
 public interface NgoService {
 	
-	public Ngo auth(Ngo ngo);
-	
-	public boolean register(Ngo ngo);
-	
-	public Ngo ngoDeatils(Ngo ngo);
-	
-	public List<Child> listChildren(Ngo ngo);
-
-
+	Ngo auth(Ngo ngo);
+	boolean register(Ngo ngo);
+	Ngo ngoDeatils(Ngo ngo);
+	List<Child> listChildren(Ngo ngo);
+	Ngo update(Ngo ngo);
+	boolean deleteNgo(int ngo_id);
 }

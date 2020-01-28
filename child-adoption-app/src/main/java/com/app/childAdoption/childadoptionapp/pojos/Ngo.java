@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "ngos")
@@ -51,6 +52,7 @@ public class Ngo {
 	private List<Request> requests = new ArrayList<>();
 	
 	@JsonIgnore
+	@JsonManagedReference
 	@OneToMany(mappedBy = "ngo",targetEntity = Child.class,cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
 	private List<Child> listOfchildren = new ArrayList<>();
 	
@@ -73,7 +75,13 @@ public class Ngo {
 		this.password = password;
 		this.confirmPassword = confirmPassword;
 	}
+	
 
+	public Ngo(String email, String password) {
+		super();
+		this.email = email;
+		this.password = password;
+	}
 
 	public int getReg_id() {
 		return ngo_id;

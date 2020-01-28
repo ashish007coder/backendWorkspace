@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -36,13 +37,14 @@ public class Child {
 	@Column(name = "blood_group")
 	private String bloodGroup;
 	
+	
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "reg_No",referencedColumnName = "reg_No")
 	private Parent parent;
 	
 	@JsonIgnore
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne()
 	@JoinColumn(name = "ngo_id",referencedColumnName = "ngo_id")
 	private Ngo ngo;
 	

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 
@@ -304,7 +305,11 @@ public class Parent {
 				+ ", city=" + city + ", district=" + district + ", state=" + state + ", pinCode=" + pinCode
 				+ ", adharNumber=" + adharNumber + ", mobileNumber=" + mobileNumber + ", maritalStatus=" + maritalStatus
 				+ ", reg_date=" + reg_date + ", numOfchildrenParentHave=" + numOfchildrenParentHave + ", password="
-				+ password + ", email=" + email + ", listOfchildren=" + listOfchildren + ", requests=" + requests + "]";
+				+ password + ", email=" + email + "]";
 	}
+	
+
+	
+	
 	
 }

@@ -43,5 +43,4 @@ public class ChildRegisterController {
 		return new ResponseEntity<String>("Register failed:invalid credentials",HttpStatus.OK);	
 	}
 	
-	
 }

@@ -8,6 +8,8 @@ import javax.persistence.*;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "REQUEST")
 public class Request {
@@ -30,12 +32,14 @@ public class Request {
 	
 	private String thirdStateOfAdoption;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@JsonIgnore
+	@ManyToOne
 	@JoinColumn(name = "ngo_id")
 	private Ngo ngo;
 	
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@JsonIgnore
+	@ManyToOne
 	@JoinColumn(name = "reg_No")
 	private Parent parent;
 	
@@ -157,9 +161,11 @@ public class Request {
 		return "Request [req_id=" + req_id + ", genderOfChild=" + genderOfChild + ", healthStatusOfChild="
 				+ healthStatusOfChild + ", categoryOfChild=" + categoryOfChild + ", ageOfChild=" + ageOfChild
 				+ ", firstStateOfAdoption=" + firstStateOfAdoption + ", secondStateOfAdoption=" + secondStateOfAdoption
-				+ ", thirdStateOfAdoption=" + thirdStateOfAdoption + ", ngo=" + ngo + ", parent=" + parent + ", moto="
-				+ moto + ", requested_date=" + requested_date + "]";
+				+ ", thirdStateOfAdoption=" + thirdStateOfAdoption + ", moto=" + moto + ", requested_date="
+				+ requested_date + "]";
 	}
+
+	
 	
 	
 	

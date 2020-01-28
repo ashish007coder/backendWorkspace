@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.app.childAdoption.childadoptionapp.pojos.Ngo;
 
 @Repository
-public interface NgoDao extends JpaRepository<Ngo, String>{
+public interface NgoDao extends JpaRepository<Ngo, Integer>{
 
 }
