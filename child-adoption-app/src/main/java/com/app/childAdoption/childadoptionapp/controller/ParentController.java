@@ -59,7 +59,7 @@ public class ParentController {
 
 		if(temp!=null)
 		{
-			return new ResponseEntity<Parent>(parent,HttpStatus.OK);
+			return new ResponseEntity<Parent>(temp,HttpStatus.OK);
 			
 		}
 		return new ResponseEntity<String>("Auth failed:invalid credits",HttpStatus.OK);

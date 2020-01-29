@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.childAdoption.childadoptionapp.daos.RequestDao;
+import com.app.childAdoption.childadoptionapp.pojos.Child;
 import com.app.childAdoption.childadoptionapp.pojos.Ngo;
 import com.app.childAdoption.childadoptionapp.pojos.Parent;
 import com.app.childAdoption.childadoptionapp.pojos.Request;
@@ -59,5 +60,22 @@ public class RequestServiceimpl implements IRequestService {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public Request detailsOfOneChild(int id) {
+		// TODO Auto-generated method stub
+		String jpql = "select u from Request u where u.req_id=:reqid";
+
+		
+		 Request reqresult = mgr.unwrap(Session.class).createQuery(jpql, Request.class).setParameter("reqid",id).getSingleResult();
+		 
+		 System.out.println(reqresult.getParent());
+		 
+		 Ngo ngoresult = reqresult.getNgo();
+		 
+		 Parent parent= reqresult.getParent();
+		
+		 return reqresult;
 	}
 }

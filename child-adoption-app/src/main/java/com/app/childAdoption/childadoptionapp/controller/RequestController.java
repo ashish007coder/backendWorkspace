@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -78,4 +80,25 @@ public class RequestController {
 		List<Request>list=  service.listOfRequests(parent);
 		return new ResponseEntity<List<Request>>(list,HttpStatus.OK);
 	}
+	
+	
+	
+	@GetMapping(value = "/oneRequestfromlist/{id}")
+	public ResponseEntity<?>m3(@PathVariable int id )
+	{
+		
+		
+		System.out.println(id);
+		Request request = service.detailsOfOneChild(id);
+		
+		return new ResponseEntity<Request>(request,HttpStatus.OK);
+
+//		if()
+//		{
+//			
+//		}
+//		return new ResponseEntity<String>("Data Fetch failed",HttpStatus.NOT_FOUND);
+		
+	}
+	
 }

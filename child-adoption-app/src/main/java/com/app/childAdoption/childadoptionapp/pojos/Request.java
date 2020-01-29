@@ -156,14 +156,7 @@ public class Request {
 		this.categoryOfChild = categoryOfChild;
 	}
 
-	@Override
-	public String toString() {
-		return "Request [req_id=" + req_id + ", genderOfChild=" + genderOfChild + ", healthStatusOfChild="
-				+ healthStatusOfChild + ", categoryOfChild=" + categoryOfChild + ", ageOfChild=" + ageOfChild
-				+ ", firstStateOfAdoption=" + firstStateOfAdoption + ", secondStateOfAdoption=" + secondStateOfAdoption
-				+ ", thirdStateOfAdoption=" + thirdStateOfAdoption + ", moto=" + moto + ", requested_date="
-				+ requested_date + "]";
-	}
+	
 
 	
 	
