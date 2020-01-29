@@ -1,5 +1,8 @@
 package com.app.childAdoption.childadoptionapp.pojos;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -47,6 +52,10 @@ public class Child {
 	@ManyToOne()
 	@JoinColumn(name = "ngo_id",referencedColumnName = "ngo_id")
 	private Ngo ngo;
+	
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "child")
+	private List<Request> requestList;
 	
 	
 	public Child() {
@@ -142,6 +151,19 @@ public class Child {
 		return "Child [id=" + child_id + ", name=" + child_name + ", age=" + age + ", gender=" + gender + ", color=" + color
 				+ ", imageUrl=" + imageUrl + ", health=" + health + ", bloodGroup=" + bloodGroup + "]";
 	}
+	public byte[] getImageUrl() {
+		return imageUrl;
+	}
+	public void setImageUrl(byte[] imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+	public List<Request> getRequestList() {
+		return requestList;
+	}
+	public void setRequestList(List<Request> requestList) {
+		this.requestList = requestList;
+	}
+	
 	
 	
 	

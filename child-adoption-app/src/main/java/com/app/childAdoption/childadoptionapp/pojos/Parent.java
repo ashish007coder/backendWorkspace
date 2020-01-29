@@ -61,10 +61,10 @@ public class Parent {
 	private int pinCode;
 	
 	@Column(name = "aadhar_card_no" )
-	private int adharNumber;
+	private long adharNumber;
 	
 	@Column(name = "mobile_no" )
-	private int mobileNumber;
+	private long mobileNumber;
 	
 	@Column(name = "marital_status" )
 	private String maritalStatus;
@@ -92,7 +92,7 @@ public class Parent {
 	
 	public Parent(int regNo, String gender, String maleParName, String femaleParName, int maleParAge, int femaleParAge,
 			int compositeAge, String fOccupation, String mOccupation, double mIncome, double fIncome, int numOfChildren,
-			String address, String city, String district, String state, int pinCode, int adharNumber, int mobileNumber,
+			String address, String city, String district, String state, int pinCode, long adharNumber, int mobileNumber,
 			String maritalStatus, Date reg_date, int numOfchildrenParentHave, String password, String email) {
 		super();
 		this.reg_No = regNo;
@@ -233,13 +233,13 @@ public class Parent {
 	public void setPinCode(int pinCode) {
 		this.pinCode = pinCode;
 	}
-	public int getAdharNumber() {
+	public long getAdharNumber() {
 		return adharNumber;
 	}
-	public void setAdharNumber(int adharNumber) {
+	public void setAdharNumber(long adharNumber) {
 		this.adharNumber = adharNumber;
 	}
-	public int getMobileNumber() {
+	public long getMobileNumber() {
 		return mobileNumber;
 	}
 	public void setMobileNumber(int mobileNumber) {

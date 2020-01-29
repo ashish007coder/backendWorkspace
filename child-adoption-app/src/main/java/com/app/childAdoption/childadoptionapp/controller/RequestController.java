@@ -90,6 +90,7 @@ public class RequestController {
 		
 		System.out.println(id);
 		Request request = service.detailsOfOneChild(id);
+		System.out.println(request.getChild());
 		
 		return new ResponseEntity<Request>(request,HttpStatus.OK);
 

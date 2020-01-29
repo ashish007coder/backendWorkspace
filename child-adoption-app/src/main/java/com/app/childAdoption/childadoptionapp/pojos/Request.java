@@ -26,11 +26,9 @@ public class Request {
 	
 	private int ageOfChild;
 	
-	private String firstStateOfAdoption;
+	private String state;
 	
-	private String secondStateOfAdoption;
-	
-	private String thirdStateOfAdoption;
+	private String statusOfRequest;
 	
 	@JsonIgnore
 	@ManyToOne
@@ -42,6 +40,12 @@ public class Request {
 	@ManyToOne
 	@JoinColumn(name = "reg_No")
 	private Parent parent;
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "child_id")
+	private Child child;
+	
 	
 	private String moto;
 	
@@ -124,28 +128,21 @@ public class Request {
 		this.ageOfChild = ageOfChild;
 	}
 
-	public String getFirstStateOfAdoption() {
-		return firstStateOfAdoption;
+	
+	public String getState() {
+		return state;
 	}
 
-	public void setFirstStateOfAdoption(String firstStateOfAdoption) {
-		this.firstStateOfAdoption = firstStateOfAdoption;
+	public void setState(String state) {
+		this.state = state;
 	}
 
-	public String getSecondStateOfAdoption() {
-		return secondStateOfAdoption;
+	public String getStatusOfRequest() {
+		return statusOfRequest;
 	}
 
-	public void setSecondStateOfAdoption(String secondStateOfAdoption) {
-		this.secondStateOfAdoption = secondStateOfAdoption;
-	}
-
-	public String getThirdStateOfAdoption() {
-		return thirdStateOfAdoption;
-	}
-
-	public void setThirdStateOfAdoption(String thirdStateOfAdoption) {
-		this.thirdStateOfAdoption = thirdStateOfAdoption;
+	public void setStatusOfRequest(String statusOfRequest) {
+		this.statusOfRequest = statusOfRequest;
 	}
 
 	public String getCategoryOfChild() {
@@ -156,12 +153,21 @@ public class Request {
 		this.categoryOfChild = categoryOfChild;
 	}
 
-	
+	public Child getChild() {
+		return child;
+	}
 
-	
-	
-	
-	
+	public void setChild(Child child) {
+		this.child = child;
+	}
+
+	@Override
+	public String toString() {
+		return "Request [req_id=" + req_id + ", genderOfChild=" + genderOfChild + ", healthStatusOfChild="
+				+ healthStatusOfChild + ", categoryOfChild=" + categoryOfChild + ", ageOfChild=" + ageOfChild
+				+ ", state=" + state + ", statusOfRequest=" + statusOfRequest + ", ngo=" + ngo + ", parent=" + parent
+				+ ", child=" + child + ", moto=" + moto + ", requested_date=" + requested_date + "]";
+	}
 	
 	
 	

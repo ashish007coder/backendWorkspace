@@ -70,11 +70,6 @@ public class RequestServiceimpl implements IRequestService {
 		
 		 Request reqresult = mgr.unwrap(Session.class).createQuery(jpql, Request.class).setParameter("reqid",id).getSingleResult();
 		 
-		 System.out.println(reqresult.getParent());
-		 
-		 Ngo ngoresult = reqresult.getNgo();
-		 
-		 Parent parent= reqresult.getParent();
 		
 		 return reqresult;
 	}
