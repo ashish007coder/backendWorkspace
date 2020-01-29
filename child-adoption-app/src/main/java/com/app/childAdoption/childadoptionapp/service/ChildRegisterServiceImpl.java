@@ -30,7 +30,6 @@ public class ChildRegisterServiceImpl implements ChildRegisterService {
 		// TODO Auto-generated method stub
 		return false;
 	}*/
-
 	@Override
 	public boolean register(Child c,int id) {
 		

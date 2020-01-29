@@ -23,9 +23,9 @@ public class Ngo {
 	@Column(name = "ngo_name")
 	private String ngoName;
 	
-	@DateTimeFormat(pattern = "dd/mm/yyyy")
+//	@DateTimeFormat(pattern = "dd/mm/yyyy")
 	@Column(name = "set_up_date")
-	private LocalDate setUpDate;
+	private Date setUpDate;
 	
 	private String address;
 	
@@ -64,7 +64,7 @@ public class Ngo {
 		
 	}
 	
-	public Ngo(int ngoid, String ngoName, LocalDate setUpDate, String address, String state, String district,
+	public Ngo(int ngoid, String ngoName, Date setUpDate, String address, String state, String district,
 			String contactPerson, String phoneNumber, String email, String password, String confirmPassword) {
 		super();
 		this.ngo_id = ngoid;
@@ -107,12 +107,12 @@ public class Ngo {
 	}
 
 
-	public LocalDate getSetUpDate() {
+	public Date getSetUpDate() {
 		return setUpDate;
 	}
 
 
-	public void setSetUpDate(LocalDate setUpDate) {
+	public void setSetUpDate(Date setUpDate) {
 		this.setUpDate = setUpDate;
 	}
 

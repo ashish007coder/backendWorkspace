@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -47,9 +49,7 @@ public class NgoLoginController {
 	@RequestMapping(value = "/ngoauth",method = RequestMethod.POST)
 	public ResponseEntity<?>m1(@RequestBody Ngo ngo)
 	{
-		System.out.println(ngo);
 		Ngo temp = service.auth(ngo);
-		System.out.println("temp "+temp);
 
 		if(temp!=null)
 		{
@@ -67,7 +67,7 @@ public class NgoLoginController {
 	{
 		return service.ngoDeatils(ngo);		
 	}
-	@RequestMapping(value = "/childlist",method = RequestMethod.POST)
+	@RequestMapping(value = "/childlist",method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE)
 	public List<Child> list(@RequestBody Ngo ngo)
 	{
 		return service.listChildren(ngo);
@@ -78,6 +78,14 @@ public class NgoLoginController {
 		System.out.println(ngo_id);
 		service.deleteNgo(ngo_id);
 		Message msg = new Message("Ngo account has been removed");
+		return new ResponseEntity<Message>(msg,HttpStatus.OK);
+	}
+	
+	@PutMapping(value = "/update")
+	public ResponseEntity<?> updateNgo(@RequestBody Ngo ngo){
+		service.auth(ngo);
+		 service.update(ngo);
+		Message msg = new Message("Ngo account has been updated sucessfully.......");
 		return new ResponseEntity<Message>(msg,HttpStatus.OK);
 	}
 }

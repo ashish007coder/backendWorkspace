@@ -2,6 +2,7 @@ package com.app.childAdoption.childadoptionapp.pojos;
 
 import java.util.List;
 
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,18 +11,26 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonValueFormat;
 
 @Entity
 @Table(name = "children")
+
 public class Child {
 
+	@JsonProperty(value = "no")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int child_id;
@@ -34,6 +43,9 @@ public class Child {
 	
 	private String color;
 	
+	@JsonIgnore
+	@Lob @Basic(fetch = FetchType.LAZY)
+	@Column(length=100000)
 	private byte[] imageUrl;
 	
 	@Column(name = "health_status")
@@ -41,7 +53,6 @@ public class Child {
 	
 	@Column(name = "blood_group")
 	private String bloodGroup;
-	
 	
 	@JsonIgnore
 	@ManyToOne
@@ -54,7 +65,7 @@ public class Child {
 	private Ngo ngo;
 	
 	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL,mappedBy = "child")
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "child", fetch = FetchType.LAZY,targetEntity = Request.class)
 	private List<Request> requestList;
 	
 	

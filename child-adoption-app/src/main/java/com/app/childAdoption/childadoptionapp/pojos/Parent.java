@@ -64,15 +64,15 @@ public class Parent {
 	private int pinCode;
 	
 	@Column(name = "aadhar_card_no" )
-	private long adharNumber;
+	private String adharNumber;
 	
 	@Column(name = "mobile_no" )
-	private long mobileNumber;
+	private String mobileNumber;
 	
 	@Column(name = "marital_status" )
 	private String maritalStatus;
 	
-	@DateTimeFormat(pattern = "dd/mm/yyyy")
+//	@DateTimeFormat(pattern = "dd/mm/yyyy")
 	private LocalDate reg_date;
 	
 	@Column(name = "num_of_children_parent_have" )
@@ -96,7 +96,7 @@ public class Parent {
 	
 	public Parent(int regNo, String gender, String maleParName, String femaleParName, int maleParAge, int femaleParAge,
 			int compositeAge, String fOccupation, String mOccupation, double mIncome, double fIncome, int numOfChildren,
-			String address, String city, String district, String state, int pinCode, long adharNumber, int mobileNumber,
+			String address, String city, String district, String state, int pinCode, String adharNumber, String mobileNumber,
 			String maritalStatus, LocalDate reg_date, int numOfchildrenParentHave, String password, String email) {
 		super();
 		this.reg_No = regNo;
@@ -237,16 +237,16 @@ public class Parent {
 	public void setPinCode(int pinCode) {
 		this.pinCode = pinCode;
 	}
-	public long getAdharNumber() {
+	public String getAdharNumber() {
 		return adharNumber;
 	}
-	public void setAdharNumber(long adharNumber) {
+	public void setAdharNumber(String adharNumber) {
 		this.adharNumber = adharNumber;
 	}
-	public long getMobileNumber() {
+	public String getMobileNumber() {
 		return mobileNumber;
 	}
-	public void setMobileNumber(int mobileNumber) {
+	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
 	public String getMaritalStatus() {
@@ -311,9 +311,6 @@ public class Parent {
 				+ ", reg_date=" + reg_date + ", numOfchildrenParentHave=" + numOfchildrenParentHave + ", password="
 				+ password + ", email=" + email + "]";
 	}
-	
-
-	
-	
+		
 	
 }

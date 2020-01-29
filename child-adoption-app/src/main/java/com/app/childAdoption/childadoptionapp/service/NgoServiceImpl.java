@@ -51,7 +51,6 @@ public class NgoServiceImpl implements NgoService{
 		public Ngo ngoDeatils(Ngo ngo) {
 			String jpql = "select u from Ngo u where u.ngo_id=:ngo_id";
 			int nid = ngo.getNgo_id();
-			System.out.println(nid);
 			return mgr.unwrap(Session.class).createQuery(jpql, Ngo.class).setParameter("ngo_id", nid).getSingleResult();
 		}
 		@Override
@@ -64,8 +63,6 @@ public class NgoServiceImpl implements NgoService{
 			l1=n.getListOfchildren();
 			return l1;
 		}
-
-
 
 		@Override
 		public Ngo update(Ngo ngo) {

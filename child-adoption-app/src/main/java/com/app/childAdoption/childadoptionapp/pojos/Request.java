@@ -10,6 +10,7 @@ import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -44,7 +45,7 @@ public class Request {
 	private Parent parent;
 	
 	@JsonIgnore
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "child_id")
 	private Child child;
 	
@@ -168,9 +169,11 @@ public class Request {
 	public String toString() {
 		return "Request [req_id=" + req_id + ", genderOfChild=" + genderOfChild + ", healthStatusOfChild="
 				+ healthStatusOfChild + ", categoryOfChild=" + categoryOfChild + ", ageOfChild=" + ageOfChild
-				+ ", state=" + state + ", statusOfRequest=" + statusOfRequest + ", ngo=" + ngo + ", parent=" + parent
-				+ ", child=" + child + ", moto=" + moto + ", requested_date=" + requested_date + "]";
+				+ ", state=" + state + ", statusOfRequest=" + statusOfRequest + ", moto=" + moto + ", requested_date="
+				+ requested_date + "]";
 	}
+
+
 	
 	
 	
