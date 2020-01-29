@@ -14,5 +14,7 @@ public interface IRequestService {
 		public boolean regForCirtainChild(Request requestparams);
 		
 		public Request detailsOfOneChild(int id);
+		
+		public boolean responseforDetails(Request request);
 
 }

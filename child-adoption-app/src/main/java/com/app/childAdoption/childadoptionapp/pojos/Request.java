@@ -8,6 +8,8 @@ import javax.persistence.*;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -49,6 +51,7 @@ public class Request {
 	
 	private String moto;
 	
+	@DateTimeFormat(pattern = "dd/mm/yyyy")
 	private LocalDate requested_date;
 	
 	public Request() {

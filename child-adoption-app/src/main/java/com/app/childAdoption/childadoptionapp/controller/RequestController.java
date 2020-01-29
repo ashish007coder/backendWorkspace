@@ -102,4 +102,12 @@ public class RequestController {
 		
 	}
 	
+	
+	@RequestMapping(value = "/responsefromngo",method = RequestMethod.POST)
+	public ResponseEntity<?>m3(@Valid @RequestBody Request request)
+	{
+		service.responseforDetails(request);
+		return new ResponseEntity<String>("updated",HttpStatus.OK);
+	}
+	
 }

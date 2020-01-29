@@ -1,9 +1,12 @@
 package com.app.childAdoption.childadoptionapp.pojos;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -69,7 +72,8 @@ public class Parent {
 	@Column(name = "marital_status" )
 	private String maritalStatus;
 	
-	private Date reg_date;
+	@DateTimeFormat(pattern = "dd/mm/yyyy")
+	private LocalDate reg_date;
 	
 	@Column(name = "num_of_children_parent_have" )
 	private int numOfchildrenParentHave;
@@ -93,7 +97,7 @@ public class Parent {
 	public Parent(int regNo, String gender, String maleParName, String femaleParName, int maleParAge, int femaleParAge,
 			int compositeAge, String fOccupation, String mOccupation, double mIncome, double fIncome, int numOfChildren,
 			String address, String city, String district, String state, int pinCode, long adharNumber, int mobileNumber,
-			String maritalStatus, Date reg_date, int numOfchildrenParentHave, String password, String email) {
+			String maritalStatus, LocalDate reg_date, int numOfchildrenParentHave, String password, String email) {
 		super();
 		this.reg_No = regNo;
 		this.gender = gender;
@@ -251,10 +255,10 @@ public class Parent {
 	public void setMaritalStatus(String maritalStatus) {
 		this.maritalStatus = maritalStatus;
 	}
-	public Date getReg_date() {
+	public LocalDate getReg_date() {
 		return reg_date;
 	}
-	public void setReg_date(Date reg_date) {
+	public void setReg_date(LocalDate reg_date) {
 		this.reg_date = reg_date;
 	}
 	

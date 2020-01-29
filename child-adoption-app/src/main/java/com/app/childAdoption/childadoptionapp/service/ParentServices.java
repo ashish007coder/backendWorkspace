@@ -21,4 +21,6 @@ public interface ParentServices {
 	
 	public Parent getparentDetails(Parent parent);
 	
+	
+	
 }

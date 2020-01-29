@@ -73,4 +73,15 @@ public class RequestServiceimpl implements IRequestService {
 		
 		 return reqresult;
 	}
+
+	@Override
+	public boolean responseforDetails(Request request) {
+		// TODO Auto-generated method stub
+		
+		
+		request.setStatusOfRequest("responded");
+		dao.save(request);
+		
+		return true;
+	}
 }
