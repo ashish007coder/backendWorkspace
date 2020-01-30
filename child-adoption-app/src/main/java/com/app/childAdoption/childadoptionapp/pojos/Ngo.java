@@ -10,6 +10,7 @@ import javax.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -52,11 +53,14 @@ public class Ngo {
 	private List<Parent> listOfParents = new ArrayList<>(); */
 	
 	@JsonIgnore
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@OneToMany(mappedBy = "ngo")
 	private List<Request> requests = new ArrayList<>();
 	
+
 	@JsonIgnore
-	@JsonManagedReference
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+//	@JsonManagedReference
 	@OneToMany(mappedBy = "ngo",targetEntity = Child.class,cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
 	private List<Child> listOfchildren = new ArrayList<>();
 	

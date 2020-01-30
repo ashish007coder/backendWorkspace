@@ -83,6 +83,24 @@ public class RequestController {
 	
 	
 	
+	/*
+	 * @GetMapping(value = "/oneRequestfromlist/{id}") public
+	 * ResponseEntity<?>m3(@PathVariable int id ) {
+	 * 
+	 * 
+	 * System.out.println(id); Request request = service.detailsOfOneChild(id);
+	 * System.out.println("iwufyhiuefhdoiwejpowfopdjwpoejdopewjd");
+	 * System.out.println("child:"+request.getChild());
+	 * System.out.println("\n\nRequest details:"+new
+	 * ResponseEntity<Request>(request,HttpStatus.OK)); return new
+	 * ResponseEntity<Request>(request,HttpStatus.OK);
+	 * 
+	 * // if() // { // // } // return new
+	 * ResponseEntity<String>("Data Fetch failed",HttpStatus.NOT_FOUND);
+	 * 
+	 * }
+	 */
+	
 	@GetMapping(value = "/oneRequestfromlist/{id}")
 	public ResponseEntity<?>m3(@PathVariable int id )
 	{
@@ -90,8 +108,10 @@ public class RequestController {
 		
 		System.out.println(id);
 		Request request = service.detailsOfOneChild(id);
-		System.out.println(request.getChild());
-		
+		//System.out.println("iwufyhiuefhdoiwejpowfopdjwpoejdopewjd");
+		System.out.println("child:"+request.getChild());
+		System.out.println("parent:"+request.getParent());
+		System.out.println("\n\nRequest details:"+new ResponseEntity<Request>(request,HttpStatus.OK));
 		return new ResponseEntity<Request>(request,HttpStatus.OK);
 
 //		if()
@@ -101,6 +121,7 @@ public class RequestController {
 //		return new ResponseEntity<String>("Data Fetch failed",HttpStatus.NOT_FOUND);
 		
 	}
+
 	
 	
 	@RequestMapping(value = "/responsefromngo",method = RequestMethod.POST)

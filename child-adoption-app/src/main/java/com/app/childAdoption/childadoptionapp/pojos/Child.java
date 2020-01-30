@@ -1,5 +1,6 @@
 package com.app.childAdoption.childadoptionapp.pojos;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.Basic;
@@ -20,6 +21,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -43,6 +45,8 @@ public class Child {
 	
 	private String color;
 	
+	
+	
 	@JsonIgnore
 	@Lob @Basic(fetch = FetchType.LAZY)
 	@Column(length=100000)
@@ -64,7 +68,9 @@ public class Child {
 	@JoinColumn(name = "ngo_id",referencedColumnName = "ngo_id")
 	private Ngo ngo;
 	
+	
 	@JsonIgnore
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "child", fetch = FetchType.LAZY,targetEntity = Request.class)
 	private List<Request> requestList;
 	
@@ -157,11 +163,7 @@ public class Child {
 	public void setNgo(Ngo ngo) {
 		this.ngo = ngo;
 	}
-	@Override
-	public String toString() {
-		return "Child [id=" + child_id + ", name=" + child_name + ", age=" + age + ", gender=" + gender + ", color=" + color
-				+ ", imageUrl=" + imageUrl + ", health=" + health + ", bloodGroup=" + bloodGroup + "]";
-	}
+	
 	public byte[] getImageUrl() {
 		return imageUrl;
 	}
@@ -174,6 +176,13 @@ public class Child {
 	public void setRequestList(List<Request> requestList) {
 		this.requestList = requestList;
 	}
+	@Override
+	public String toString() {
+		return "Child [child_id=" + child_id + ", child_name=" + child_name + ", age=" + age + ", gender=" + gender
+				+ ", color=" + color + ", imageUrl=" + Arrays.toString(imageUrl) + ", health=" + health
+				+ ", bloodGroup=" + bloodGroup + "]";
+	}
+	
 	
 	
 	
