@@ -13,6 +13,6 @@ public interface NgoService {
 	boolean register(Ngo ngo);
 	Ngo ngoDeatils(Ngo ngo);
 	List<Child> listChildren(Ngo ngo);
-	Ngo update(Ngo ngo);
+	boolean update(Ngo ngo);
 	boolean deleteNgo(int ngo_id);
 }

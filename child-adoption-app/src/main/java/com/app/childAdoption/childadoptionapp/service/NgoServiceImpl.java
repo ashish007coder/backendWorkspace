@@ -39,6 +39,9 @@ public class NgoServiceImpl implements NgoService{
 
 
 	
+	
+	
+	
 	 @Override 
 	 public Ngo auth(Ngo ngo) {
 		 
@@ -65,26 +68,23 @@ public class NgoServiceImpl implements NgoService{
 		}
 
 		@Override
-		public Ngo update(Ngo ngo) {
-			mgr.unwrap(Session.class).update(ngo);
-			return ngo;
+		public boolean update(Ngo ngo) {
+			System.out.println(ngo.getNgo_id());
+			if(dao.existsById(ngo.getNgo_id())) {
+				Ngo n = (Ngo) mgr.unwrap(Session.class).load(Ngo.class, ngo.getNgo_id());
+				n=ngo;
+				mgr.unwrap(Session.class).update(n);
+			return true;
+			}
+			return false;
 		}
-
-
-
 		@Override
 		public boolean deleteNgo(int ngo_id) {
-//			if(dao.existsById(ngo_id))
-//			mgr.unwrap(Session.class).delete(ngo_id);
-			
-			Ngo tempNgo = new Ngo();
-			tempNgo.setNgo_id(ngo_id);
-			Example<Ngo> exampleNgo = Example.of(tempNgo);
-			Optional<Ngo> optional = dao.findOne(exampleNgo);
-//			if(optional.isPresent()) {
-//				return optional.get();
-//			}
+			if(dao.existsById(ngo_id)) {
+			dao.deleteById(ngo_id);
 			return true;
+			}
+			return false;
 		}
 		
 }

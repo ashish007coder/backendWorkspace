@@ -72,7 +72,6 @@ public class ParentServiceImpl implements ParentServices{
 			return mgr.unwrap(Session.class).createQuery(jpql,Child.class).setParameter("ag", child.getAge()).getResultList();
 
 		}
-		
 		return null;
 	}
 

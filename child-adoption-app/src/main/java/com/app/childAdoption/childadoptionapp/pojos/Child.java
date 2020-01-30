@@ -173,9 +173,5 @@ public class Child {
 	}
 	public void setRequestList(List<Request> requestList) {
 		this.requestList = requestList;
-	}
-	
-	
-	
-	
+	}	
 }

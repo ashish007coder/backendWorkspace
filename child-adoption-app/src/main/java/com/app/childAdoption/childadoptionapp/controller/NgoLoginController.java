@@ -75,17 +75,21 @@ public class NgoLoginController {
 	@DeleteMapping("/delete/{ngo_id}")
 	public ResponseEntity<?> deleteNgo(@PathVariable int ngo_id){
 		
-		System.out.println(ngo_id);
-		service.deleteNgo(ngo_id);
+		
+		if(service.deleteNgo(ngo_id)) {
 		Message msg = new Message("Ngo account has been removed");
+		return new ResponseEntity<Message>(msg,HttpStatus.OK);}
+		Message msg = new Message("Ngo account cant be removed");
 		return new ResponseEntity<Message>(msg,HttpStatus.OK);
 	}
-	
 	@PutMapping(value = "/update")
 	public ResponseEntity<?> updateNgo(@RequestBody Ngo ngo){
-		service.auth(ngo);
-		 service.update(ngo);
-		Message msg = new Message("Ngo account has been updated sucessfully.......");
-		return new ResponseEntity<Message>(msg,HttpStatus.OK);
-	}
+		ngo = service.auth(ngo);
+		if(service.update(ngo)){
+			Message msg = new Message("Profile updated sucessfully......");
+			return new ResponseEntity<Message>(msg,HttpStatus.OK);
+		}
+	Message msg = new Message("Cant be updated ");
+	return new ResponseEntity<Message>(msg,HttpStatus.OK);
+}
 }
