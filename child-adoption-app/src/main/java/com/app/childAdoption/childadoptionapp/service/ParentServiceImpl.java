@@ -56,20 +56,21 @@ public class ParentServiceImpl implements ParentServices{
 		if(child.getGender()!=null&&child.getAge()!=0)
 		{
 			jpql += " u.gender=:gen and u.age=:ag";
-			return mgr.unwrap(Session.class).createQuery(jpql,Child.class).setParameter("gen", child.getGender()).setParameter("ag", child.getAge()).getResultList();
+			return mgr.unwrap(Session.class).createQuery(jpql,Child.class).setParameter("gen", child.getGender()).setParameter("ag", child.getAge())
+.getResultList();
 
 			
 		}
 		else if(child.getGender()!=null&& child.getAge()==0)
 		{
 			jpql += " u.gender=:gen";
-			return mgr.unwrap(Session.class).createQuery(jpql,Child.class).setParameter("gen", child.getGender()).getResultList();
+			return mgr.unwrap(Session.class).createQuery(jpql,Child.class).setParameter("gen", child.getGender()).setMaxResults(3).getResultList();
 
 		}
 		else if( (child.getGender()==null&&child.getAge()!=0))
 		{
 			jpql += " u.age=:ag";
-			return mgr.unwrap(Session.class).createQuery(jpql,Child.class).setParameter("ag", child.getAge()).getResultList();
+			return mgr.unwrap(Session.class).createQuery(jpql,Child.class).setParameter("ag", child.getAge()).setMaxResults(3).getResultList();
 
 		}
 		return null;

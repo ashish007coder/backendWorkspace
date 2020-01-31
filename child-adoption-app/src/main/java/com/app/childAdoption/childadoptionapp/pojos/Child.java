@@ -72,24 +72,28 @@ public class Child {
 	public Child() {
 		
 	}
-	public Child(int id, String name, int age, String gender, String color, byte[] imageUrl, String health,
-			String bloodGroup) {
+	
+	
+	
+	public Child(int child_id, String child_name, int age, String gender, String color, byte[] imageUrl, String health,
+			String bloodGroup, Parent parent, Ngo ngo, List<Request> requestList) {
 		super();
-		this.child_id = id;
-		this.child_name = name;
+		this.child_id = child_id;
+		this.child_name = child_name;
 		this.age = age;
 		this.gender = gender;
 		this.color = color;
 		this.imageUrl = imageUrl;
 		this.health = health;
 		this.bloodGroup = bloodGroup;
+		this.parent = parent;
+		this.ngo = ngo;
+		this.requestList = requestList;
 	}
-	public int getId() {
-		return child_id;
-	}
-	public void setId(int id) {
-		this.child_id = id;
-	}
+
+	
+
+
 	public String getName() {
 		return child_name;
 	}
