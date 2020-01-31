@@ -1,5 +1,6 @@
 package com.app.childAdoption.childadoptionapp.pojos;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.Basic;
@@ -20,6 +21,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -30,7 +32,6 @@ import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonValueFormat;
 
 public class Child {
 
-	@JsonProperty(value = "no")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int child_id;
@@ -42,6 +43,8 @@ public class Child {
 	private String gender;
 	
 	private String color;
+	
+	
 	
 	@JsonIgnore
 	@Lob @Basic(fetch = FetchType.LAZY)
@@ -59,10 +62,11 @@ public class Child {
 	@JoinColumn(name = "reg_No",referencedColumnName = "reg_No")
 	private Parent parent;
 	
-	@JsonIgnore
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@ManyToOne()
 	@JoinColumn(name = "ngo_id",referencedColumnName = "ngo_id")
 	private Ngo ngo;
+	
 	
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "child", fetch = FetchType.LAZY,targetEntity = Request.class)
@@ -161,11 +165,7 @@ public class Child {
 	public void setNgo(Ngo ngo) {
 		this.ngo = ngo;
 	}
-	@Override
-	public String toString() {
-		return "Child [id=" + child_id + ", name=" + child_name + ", age=" + age + ", gender=" + gender + ", color=" + color
-				+ ", imageUrl=" + imageUrl + ", health=" + health + ", bloodGroup=" + bloodGroup + "]";
-	}
+	
 	public byte[] getImageUrl() {
 		return imageUrl;
 	}
@@ -178,4 +178,16 @@ public class Child {
 	public void setRequestList(List<Request> requestList) {
 		this.requestList = requestList;
 	}	
+	
+	@Override
+	public String toString() {
+		return "Child [child_id=" + child_id + ", child_name=" + child_name + ", age=" + age + ", gender=" + gender
+				+ ", color=" + color + ", imageUrl=" + Arrays.toString(imageUrl) + ", health=" + health
+				+ ", bloodGroup=" + bloodGroup + "]";
+	}
+	
+	
+	
+	
+	
 }

@@ -61,6 +61,7 @@ public class RequestServiceimpl implements IRequestService {
 
 	@Override
 	public Request detailsOfOneChild(int id) {
+		System.out.println("uiwfyioe");
 		String jpql = "select u from Request u where u.req_id=:reqid";
 
 		

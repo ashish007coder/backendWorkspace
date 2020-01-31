@@ -33,19 +33,19 @@ public class Request {
 	
 	private String statusOfRequest;
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "ngo_id")
 	private Ngo ngo;
 	
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "reg_No")
 	private Parent parent;
 	
-	@JsonIgnore
-	@ManyToOne(fetch = FetchType.LAZY)
+//	@JsonIgnore
+	@ManyToOne()
 	@JoinColumn(name = "child_id")
 	private Child child;
 	
